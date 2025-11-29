@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="sidebar">
-        <h3>add fleet</h3>
+        <h3>Add-Fleet</h3>
         <input id="reg" placeholder="Reg no of vechile">
         <select  id="cat">
             <option value="">Select Category</option>
@@ -22,7 +22,51 @@
              <option value="">Unavailable</option>
         </select>
         <button onclick="addfleet()">Add Fleet</button>
-        
     </div>
+    <div class ="navbar">
+        <span>Filters:</span>
+        <select  id="filtercat" onchange="applyFilters()">
+            <option value="All">All Category</option>
+             <option>Auto</option>
+            <option>Car</option>
+            <option>Truck</option>
+            <option>Bus</option>
+        </select>
+        <select  id="filterAvail" onchange="applyFilter()">
+          <option value="All">All Availability</option>
+          <option>Available</option>
+          <option>Unavailable</option>
+        </select>
+        <button onclick ="clearFilters()">Clear Filters</button>
+    </div>
+    <div id="fleetContainer" class="main"></div>
+    <script>
+        let fleetList=[];
+        function addfleet(){
+            let reg=document.getElementById("reg").value.trim();
+            let cat=document.getElementById("cat").value;
+            let driver=document.getElementById("driver").value.trim();
+            let avail=document.getElementById("avail").value;
+            if (!reg||!cat||!driver){
+                alert("All fields are required");
+                return;
+            }
+            fleetList.push({
+                reg,
+                cat,
+                driver,
+                avail,
+               Image:https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png
+            });
+            renderCards(fleetList);
+            document.getElementById("reg").value="";
+            document.getElementById("cat").value="";
+            document.getElementById("driver").value="";
+            document.getElementById("avail").value="Available";
+
+
+           
+        }
+    </script>
 </body>
 </html>
